@@ -6,4 +6,8 @@
 
 -- Hazır bir vt nin projeye dahil edilmesi
 	PM(Package Manager) kullanılarak
-	PM> Scaffold-DbContext "Data Source=BABEGT\\SQLEXPRESS;Initial Catalog=Northwind;Integrated Security=True;TrustServerCertificate=True;" Microsoft.EntityFrameworkCore.SqlServer -OutputDir Models
+	PM> Scaffold-DbContext "Data Source=BABEGT\SQLEXPRESS;Initial Catalog=Northwind;Integrated Security=True;TrustServerCertificate=True;" Microsoft.EntityFrameworkCore.SqlServer -OutputDir Models
+
+-- VT üzerindeki tablo yapısında herhangi bir değişiklik yapıldığında yeni yapının tekrardan code tarafına update edilmesi için
+	PM> Scaffold-DbContext "Data Source=BABEGT\SQLEXPRESS;Initial Catalog=Northwind;Integrated Security=True;TrustServerCertificate=True;" Microsoft.EntityFrameworkCore.SqlServer -OutputDir Models -force
+
