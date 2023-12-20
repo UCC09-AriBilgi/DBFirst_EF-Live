@@ -1,7 +1,14 @@
+using DBFirst_EF.Models;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+// Dependency Injection
+// Database iþlemleri için 
+builder.Services.AddDbContext<NorthwindContext>(Options => Options.UseSqlServer(builder.Configuration.GetConnectionString("Connection")));
 
 var app = builder.Build();
 

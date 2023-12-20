@@ -21,6 +21,7 @@ namespace DBFirst_EF.Controllers
         // GET: Categories
         public async Task<IActionResult> Index()
         {
+            // index sayfasına gittim
               return _context.Categories != null ? 
                           View(await _context.Categories.ToListAsync()) :
                           Problem("Entity set 'NorthwindContext.Categories'  is null.");
