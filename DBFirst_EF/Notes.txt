@@ -1,0 +1,5 @@
+﻿-- Uygulamamız bu sefer Database First (DbF) ile olacak
+-- ilk önce gerekli nuget paketleri tanımlıyoruz.
+	EF ile ilgili olan 4 tane
+	Microsoft.Extensions.Configuration
+	Microsoft.VisualStudio.Web.CodeGeneration.Design
