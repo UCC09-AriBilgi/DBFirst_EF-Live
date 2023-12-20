@@ -113,7 +113,7 @@ namespace DBFirst_EF.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("Create");
             }
             return View(category);
         }

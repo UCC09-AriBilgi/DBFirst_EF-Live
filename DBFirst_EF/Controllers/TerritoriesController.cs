@@ -45,6 +45,7 @@ namespace DBFirst_EF.Controllers
         }
 
         // GET: Territories/Create
+        // DB tarafından gelen veri sadece gösteriliyor
         public IActionResult Create()
         {
             ViewData["RegionId"] = new SelectList(_context.Regions, "RegionId", "RegionId");
@@ -97,11 +98,11 @@ namespace DBFirst_EF.Controllers
                 return NotFound();
             }
 
-            if (ModelState.IsValid)
+            if (ModelState.IsValid) // Post edilen bilgiler benim modelime uygunmu
             {
                 try
                 {
-                    _context.Update(territory);
+                    _context.Update(territory); // db tablosunun update kısmını
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
@@ -115,7 +116,7 @@ namespace DBFirst_EF.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("Index"); // işlem bitince beni ismi Index olan sayfaya yonlendir
             }
             ViewData["RegionId"] = new SelectList(_context.Regions, "RegionId", "RegionId", territory.RegionId);
             return View(territory);
