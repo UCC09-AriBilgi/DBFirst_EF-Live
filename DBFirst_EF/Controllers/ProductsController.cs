@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using DBFirst_EF.Models;
-using DBFirst_EF.MyMethods;
+using DBFirst_EF.Methods;
 
 
 namespace DBFirst_EF.Controllers
@@ -78,6 +78,7 @@ namespace DBFirst_EF.Controllers
         public async Task<IActionResult> Edit(int? id)
         {
             // Edit Viewında dropdown içinde gelen şu an için gördüğümüz id değerlerinin karşılıklarını öğrenmek istiyoruz...
+            MyMethods myMethods = new MyMethods();
 
             // category için
             var categories = _context.Categories.ToList(); 
@@ -86,9 +87,9 @@ namespace DBFirst_EF.Controllers
             {
                 ViewBag.CategoryList = ToCategoriesSelectList(_context.Categories, "CategoryId", "CategoryName");
 
-                To myMethods = new MyMethods;
 
-                ViewBag.CategoryList = ToSelectList(_context.Categories, "CategoryId", "CategoryName");
+
+                ViewBag.CategoryList = ToSuppliersSelectList(_context.Suppliers, "SupplierId", "CompanyName");
             }
 
             // supplier için

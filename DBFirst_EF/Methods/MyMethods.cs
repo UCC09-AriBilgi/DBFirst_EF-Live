@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 
-namespace DBFirst_EF.MyMethods
+namespace DBFirst_EF.Methods
 {
     public class MyMethods
     {
