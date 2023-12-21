@@ -11,6 +11,8 @@
 -- VT üzerindeki tablo yapısında herhangi bir değişiklik yapıldığında yeni yapının tekrardan code tarafına update edilmesi için
 	PM> Scaffold-DbContext "Data Source=BABEGT\SQLEXPRESS;Initial Catalog=Northwind;Integrated Security=True;TrustServerCertificate=True;" Microsoft.EntityFrameworkCore.SqlServer -OutputDir Models -force
 
+-- Hafta sonu çalışması
 ?? Birçok yerden çağrılabilecek MyMethods.cs yazılması
 ?? Çok kayıt olan sayfalarda Paging yapılması
+
 
