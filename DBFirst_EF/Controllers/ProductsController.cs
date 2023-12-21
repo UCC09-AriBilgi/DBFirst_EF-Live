@@ -6,6 +6,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using DBFirst_EF.Models;
+using DBFirst_EF.MyMethods;
+
 
 namespace DBFirst_EF.Controllers
 {
@@ -83,6 +85,10 @@ namespace DBFirst_EF.Controllers
             if (categories != null) // yani veriler gelmişse 
             {
                 ViewBag.CategoryList = ToCategoriesSelectList(_context.Categories, "CategoryId", "CategoryName");
+
+                To myMethods = new MyMethods;
+
+                ViewBag.CategoryList = ToSelectList(_context.Categories, "CategoryId", "CategoryName");
             }
 
             // supplier için
