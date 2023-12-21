@@ -77,6 +77,23 @@ namespace DBFirst_EF.Controllers
         {
             // Edit Viewında dropdown içinde gelen şu an için gördüğümüz id değerlerinin karşılıklarını öğrenmek istiyoruz...
 
+            // category için
+            var categories = _context.Categories.ToList(); 
+
+            if (categories != null) // yani veriler gelmişse 
+            {
+                ViewBag.CategoryList = ToCategoriesSelectList(_context.Categories, "CategoryId", "CategoryName");
+            }
+
+            // supplier için
+
+            var suppliers = _context.Suppliers.ToList();
+
+            if (suppliers != null) // yani veriler gelmişse 
+            {
+                ViewBag.SupplierList = ToSuppliersSelectList(_context.Suppliers, "SupplierId", "CompanyName");
+            }
+
 
             if (id == null || _context.Products == null)
             {
@@ -178,5 +195,49 @@ namespace DBFirst_EF.Controllers
         {
           return (_context.Products?.Any(e => e.ProductId == id)).GetValueOrDefault();
         }
+
+        // My Methods
+        // View tarafında CategoryId,SupplierId olarak görülen yerlerde tanımlarının görülebilmesi için aşağıdaki metotları kullanıyoruz.
+
+        [NonAction] // Herhangi bir Action'a bağlı değil..kendi başına çalışacak şekilde.
+        private dynamic ToCategoriesSelectList(DbSet<Category> categories,string valueField,string textField)
+        {
+            // View tarafına gidecek olan Category listesi hazırlanıyor
+            List<SelectListItem> list=new List<SelectListItem>();
+
+            // liste oluşuyor
+            foreach (var item in categories)
+            {
+                list.Add(new SelectListItem()
+                {
+                    Text = item.CategoryName,
+                    Value = item.CategoryId.ToString()
+                });
+            }
+
+
+            return new SelectList(list, "Value", "Text");
+        }
+
+        [NonAction] // Herhangi bir Action'a bağlı değil..kendi başına çalışacak şekilde.
+        private dynamic ToSuppliersSelectList(DbSet<Supplier> suppliers, string valueField, string textField)
+        {
+            // View tarafına gidecek olan Supplier listesi hazırlanıyor
+            List<SelectListItem> list = new List<SelectListItem>();
+
+            // liste oluşuyor
+            foreach (var item in suppliers)
+            {
+                list.Add(new SelectListItem()
+                {
+                    Text = item.CompanyName,
+                    Value = item.SupplierId.ToString()
+                });
+            }
+
+
+            return new SelectList(list, "Value", "Text");
+        }
+
     }
 }
