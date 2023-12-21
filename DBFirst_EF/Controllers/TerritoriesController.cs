@@ -21,8 +21,9 @@ namespace DBFirst_EF.Controllers
         // GET: Territories
         public async Task<IActionResult> Index()
         {
-            var northwindContext = _context.Territories.Include(t => t.Region);
-            return View(await northwindContext.ToListAsync());
+            var data = _context.Territories.Include(t => t.Region); // territories <=> region
+
+            return View(await data.ToListAsync());
         }
 
         // GET: Territories/Details/5

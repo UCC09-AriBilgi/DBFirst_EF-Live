@@ -21,8 +21,9 @@ namespace DBFirst_EF.Controllers
         // GET: Products
         public async Task<IActionResult> Index()
         {
-            var northwindContext = _context.Products.Include(p => p.Category).Include(p => p.Supplier);
-            return View(await northwindContext.ToListAsync());
+            var data = _context.Products.Include(p => p.Category).Include(p => p.Supplier);
+
+            return View(await data.ToListAsync());
         }
 
         // GET: Products/Details/5
@@ -74,18 +75,26 @@ namespace DBFirst_EF.Controllers
         // GET: Products/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
+            // Edit Viewında dropdown içinde gelen şu an için gördüğümüz id değerlerinin karşılıklarını öğrenmek istiyoruz...
+
+
             if (id == null || _context.Products == null)
             {
                 return NotFound();
             }
 
             var product = await _context.Products.FindAsync(id);
+
             if (product == null)
             {
                 return NotFound();
             }
+
             ViewData["CategoryId"] = new SelectList(_context.Categories, "CategoryId", "CategoryId", product.CategoryId);
+
+           
             ViewData["SupplierId"] = new SelectList(_context.Suppliers, "SupplierId", "SupplierId", product.SupplierId);
+
             return View(product);
         }
 
